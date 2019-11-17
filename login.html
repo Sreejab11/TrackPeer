@@ -1,0 +1,54 @@
+<html>
+<body>
+<p style="text-align: center;"><img src="https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1573951463349-trackpeer+logo.png" style="width: 205px;" class="fr-fic fr-dib"> <span style="font-size: 14px; color: rgb(85, 57, 130);"><strong>The one-stop app for IWT/CWT Professionals</strong></span></p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: rgb(184, 49, 47);"><strong>&nbsp;User Name : &nbsp;</strong></span> &nbsp; &nbsp; &nbsp; &nbsp;<input id="1" type="text" value=""></p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span style="color: rgb(184, 49, 47);">&nbsp; Enter Password &nbsp; : &nbsp; &nbsp;</span></strong>&nbsp; &nbsp; &nbsp;&nbsp;<input id="2" type="password" value=""></p>
+<p><br></p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input onclick="login()" type="submit" value="Submit"><br></p>
+<p><br></p>
+</body>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+function login(){
+	console.log('logging in');
+	$.ajax({
+    type: 'GET',
+    url: 'https://ukt8vwwmf7.execute-api.us-east-1.amazonaws.com/first/actuallogin?email='+document.getElementById("1").value+'&password='+document.getElementById("2").value,
+	data:{},
+    crossDomain : true,
+	ContentType:'json',
+    headers: {Accept : "application/json;charset=utf-8"},
+    success: function(responseData, textStatus, jqXHR) {
+        if(responseData=="Incorrect email or password"){
+			alert('Incorrect email or password.');
+		}
+		else{
+		//responseData=responseData.replace("\'", "\"");
+		
+			console.log(responseData);
+			//alert('GET failed.');
+			var nameArr = responseData.split(',');
+			window.location="http://localhost:8080/Zoohackathon/landingpage.html?userName="+nameArr[0]+"&uid="+nameArr[1];
+		}
+    },
+    error: function (responseData, textStatus, errorThrown) {
+        alert('GET failed.');
+    }
+});
+}
+</script>
+
+
+
+</html>

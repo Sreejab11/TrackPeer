@@ -1,0 +1,38 @@
+<html>
+<body>
+<p><img src="https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1573954444019-trackpeer+logo.png" style="width: 205px;" class="fr-fic fr-dib fr-fil"><span style="font-size: 14px; color: rgb(41, 105, 176);"><strong>&nbsp; &nbsp;</strong></span>&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+
+
+
+<p><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button style=" background-color: #008080; border-radius: 8px; height: 75px; width: 250px;" type="Button"><span style="color: rgb(239, 29, 29);"><strong><p id="name"></p></strong></span>&nbsp;</button>&nbsp;</strong>
+</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button style=" background-color: #800000; border-radius: 8px; height: 75px; width: 250px;" type="Button" onclick="opensearch()"><span style="color: rgb(239, 239, 239);"><strong>Search and Add Flag</strong></span></button></p>
+<p><br></p>
+
+
+<p><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button style=" background-color: #008080; border-radius: 8px; height: 75px; width: 250px;" type="Button"><span style="color: rgb(239, 239, 239);"><strong>Resources</strong></span>&nbsp;</button>&nbsp;</strong>
+</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button onclick="openflags()" style=" background-color: #800080; border-radius: 8px; height: 75px; width: 250px;" type="Button"><span style="color: rgb(239, 239, 239);"><strong>My Flags</strong></span></button></p>
+<p><br></p>
+</body>
+
+
+
+<script>
+	var params = new URLSearchParams(document.location.search);
+	var userName = params.get('userName');
+	var uid = params.get('uid');
+	document.getElementById("name").innerHTML="Hi,"+userName;
+	function opensearch(){
+			window.location="http://localhost:8080/Zoohackathon/searchorg.html?uid="+uid+"&userName="+userName;
+	}
+	function openflags(){
+			window.location="http://localhost:8080/Zoohackathon/myflags.html?="+uid+"&userName="+userName;
+	}
+</script>
+</html>

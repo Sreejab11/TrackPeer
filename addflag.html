@@ -1,0 +1,62 @@
+<html>
+<body>
+<p style="text-align: center;"><img src="https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1573951463349-trackpeer+logo.png" style="width: 205px;" class="fr-fic fr-dib"> <span style="font-size: 14px; color: rgb(85, 57, 130);"><strong>The one-stop app for IWT/CWT Professionals</strong></span></p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: rgb(184, 49, 47);"><strong>&nbsp;Project Name : &nbsp;</strong></span> &nbsp; &nbsp; &nbsp; &nbsp;<input id="1" type="text" value=""></p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: rgb(184, 49, 47);"><strong>&nbsp;Starting date of project : &nbsp;</strong></span> &nbsp; &nbsp; &nbsp; &nbsp;<input id="2"  type="text" value=""></p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: rgb(184, 49, 47);"><strong>&nbsp;location : &nbsp;</strong></span> &nbsp; &nbsp; &nbsp; &nbsp;<input id="3" type="text" value=""></p>
+<p><br></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span style="color: rgb(184, 49, 47);">&nbsp; keywords &nbsp; : &nbsp; &nbsp;</span></strong>&nbsp; &nbsp; &nbsp;&nbsp;<input  id="4" type="text" value=""></p>
+<p><br></p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input onclick="addflag()" type="submit" value="Submit"><br></p>
+<p><br></p>
+</body>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+var params = new URLSearchParams(document.location.search);
+	var userName = params.get('userName');
+	var uid = params.get('uid');
+function addflag(){
+	console.log('logging in');
+	$.ajax({
+    type: 'GET',
+    url: 'https://ukt8vwwmf7.execute-api.us-east-1.amazonaws.com/first/addflag?projectName='+document.getElementById("1").value+'&date='+document.getElementById("2").value+'&location='+document.getElementById("3").value+'&keywords='+document.getElementById("4").value+'&orgId='+uid,
+	data:{},
+    crossDomain : true,
+	ContentType:'json',
+    headers: {Accept : "application/json;charset=utf-8"},
+    success: function(responseData, textStatus, jqXHR) {
+        
+		//responseData=responseData.replace("\'", "\"");
+		
+			console.log(responseData);
+			alert('Data added sucessfully');
+			var params = new URLSearchParams(document.location.search);
+			var userName = params.get('userName');
+			var uid = params.get('uid');
+			window.location="http://localhost:8080/Zoohackathon/landingpage.html?uid="+uid+"&userName="+userName;
+	
+    },
+    error: function (responseData, textStatus, errorThrown) {
+        alert('GET failed.');
+    }
+});
+}
+
+
+
+</script>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+
+
+.container {
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+}
+.container .btn-holder {
+  justify-content: flex-end;
+  display: flex;
+}
+* {
+  box-sizing: border-box;
+}
+#flagbutton{
+	position: absolute;
+	right:    0;
+	bottom:   0;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+#myTable1 {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable1 th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable1 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable1 tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+#myInput1 {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#orgtable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#orgtable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#orgtable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#orgtable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:60%;">keywords</th>
+  </tr> 
+</table>
+</div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	var params = new URLSearchParams(document.location.search);
+	var userName = params.get('userName');
+	var uid = params.get('uid');	
+
+
+</script>
+<script>
+	$.ajax({
+    type: 'GET',
+    url: 'https://ukt8vwwmf7.execute-api.us-east-1.amazonaws.com/first/myflags?orgId='+uid,
+	data:{},
+    crossDomain : true,
+	ContentType:'json',
+    headers: {Accept : "application/json;charset=utf-8"},
+    success: function(responseData, textStatus, jqXHR) {
+        if(responseData=="No_Items"){
+			alert('No positive flags');
+		}
+		else{
+		//responseData=responseData.replace("\'", "\"");
+		
+			console.log(responseData);
+			//alert('GET failed.');
+			//var nameArr = responseData.split(',');
+			//window.location="http://localhost:8080/Zoohackathon/landingpage.html?userName="+nameArr[0]+"&uid="+nameArr[1];
+			var s = responseData.replace(/'/g, '"');
+			//console.log(s);
+			var obj=JSON.parse(s);
+			//console.log(obj[0]);
+			//document.getElementById("keysearch").style.display = "none";
+			//document.getElementById("locationsearch").style.display = "none";
+			var i=0;
+			$('#myTable tbody').empty();
+			$('#myTable tbody').append('<tr class="header"><th style="width:60%;">ProjectName</th><th style="width:60%;">Location</th><th style="width:60%;">Date</th></tr>');
+			for(i=0;i<obj.length;i++){
+					console.log('addingobject');
+					$('#myTable tbody').append('<tr><td>'+obj[i].projectName+'</td><td>'+obj[i].location+'</td><td>'+obj[i].date+'</td></tr>');
+			}
+		}
+    },
+    error: function (responseData, textStatus, errorThrown) {
+        alert('GET failed.');
+    }
+})	
+</script>
+
+</body>
+</html>

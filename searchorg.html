@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+
+
+.container {
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+}
+.container .btn-holder {
+  justify-content: flex-end;
+  display: flex;
+}
+* {
+  box-sizing: border-box;
+}
+#flagbutton{
+	position: absolute;
+	right:    0;
+	bottom:   0;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+#myTable1 {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable1 th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable1 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable1 tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+#myInput1 {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#orgtable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#orgtable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#orgtable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#orgtable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+<button type="button" onclick="dispkey()"><h2>Search by keyword</h2></button><button type="button" onclick="disploc()"><h2>Search by location</h2></button>
+<div id="keysearch">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:60%;">keywords</th>
+  </tr> 
+</table>
+</div>
+
+
+<div id="locationsearch">
+<input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search for names.." title="Type in a name">
+
+<table id="myTable1">
+  <tr class="header">
+    <th style="width:60%;">Location</th>
+  </tr> 
+</table>
+</div>
+
+<div id="orglist">
+	<table id="orgtable">
+		<tr class="header">
+    <th style="width:60%;">keywords</th>
+  </tr> 
+	</table>
+</div>
+
+<div class="container">
+  <div class="btn-holder">
+    <button type="button" onclick="newLocation()">Flag your project</button>
+  </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	var params = new URLSearchParams(document.location.search);
+	var userName = params.get('userName');
+	var uid = params.get('uid');
+	function newLocation() {
+        window.location="http://localhost:8080/Zoohackathon/addflag.html?uid="+uid+"&userName="+userName;
+    }
+	function disploc(){
+			document.getElementById("keysearch").style.display = "none";
+			document.getElementById("locationsearch").style.display = "block";
+	}
+	function dispkey(){
+			document.getElementById("locationsearch").style.display = "none";
+			document.getElementById("keysearch").style.display = "block";
+	}
+	
+</script>
+<script>
+  document.getElementById("keysearch").style.display = "none";
+  document.getElementById("locationsearch").style.display = "none";
+	keywords = ["Zoonosis","Wildlife trafficker ","Wildlife trade","Wildlife Management ","Wildlife Conservation ","Wildlife","Rehabilitation","Transport","Transhipment","Trafficking","Traditional Medicine","Trade off","Track","TRAFFIC","Suspect","Surveillance","Slaughter","Restoration","Reintroduction","Ranching","Protection zone","Poaching","Pandemics","Over-exploitation","Non-native species","Near threatened","Native species","Migratory species","MIKE","Law enforcement","LOT Identification","Keystone species","Invasive species","In-situ conservation","Illegal timber trade","Illegal logging","Illegal Wildlife Trade","IUCN","Hunting","Human-Wildlife conflict","Home range","Habitat loss","Game","Fair chase","Extinct","Ex-Situ Conservation","Endangered","Driven Hunt","Domestic trade","Canned hunting","CITES","Busmeat","Bushcraft","Buffer zone","Biological diversity","Big game","Anti-tracking","Anti-poaching","Animal welfare","Animal identification","Alien Species","fur ","scales","ivory","horns","bones","tusks","agar wood oil","sandal sticks","Pangolin","Tiger","rhinoceros","elephant"]
+	for (i = 0; i < keywords.length; i++) {
+		//console.log('adding');
+		var valueAtIndex = '<tr><td>'+keywords[i]+'</td></tr>';
+		//console.log(valueAtIndex);
+		//element=document.getElementById("myTable1");
+		//element.innerHTML += valueAtIndex;
+		$('#myTable tbody').append('<tr><td>'+ keywords[i] +'</td></tr>');
+	}
+	keywords=["xyz","Nagaon","Baksa","Chirang","Dhubri","Udalguri","noida"];
+	for (i = 0; i < keywords.length; i++) {
+		//console.log('adding');
+		var valueAtIndex = '<tr><td>'+keywords[i]+'</td></tr>';
+		//console.log(valueAtIndex);
+		//element=document.getElementById("myTable1");
+		//element.innerHTML += valueAtIndex;
+		$('#myTable1 tbody').append('<tr><td>'+ keywords[i] +'</td><td><button type="button" onclick="search(\''+keywords[i]+'\')"><h2>Search Flags</h2></button></td></tr>');
+	}
+	
+</script>
+<script>
+function search(location1){
+	var params = new URLSearchParams(document.location.search);
+	var userName = params.get('userName');
+	var uid = params.get('uid');	
+
+	console.log('search NGO');
+	$.ajax({
+    type: 'GET',
+    url: 'https://ukt8vwwmf7.execute-api.us-east-1.amazonaws.com/first/searchdb?location='+location1+'&orgId='+uid,
+	//url: 'https://ukt8vwwmf7.execute-api.us-east-1.amazonaws.com/first/searchdb?location=noida&orgId='+uid,
+    crossDomain : true,
+	ContentType:'json',
+    headers: {Accept : "application/json;charset=utf-8"},
+    success: function(responseData, textStatus, jqXHR) {
+        
+		//responseData=responseData.replace("\'", "\"");
+		console.log(responseData);
+		console.log(textStatus);
+		console.log(jqXHR.responseText);
+		//var obj=jQuery.parseJSON(responseData);
+		//console.log('failed');
+		if(responseData=="No_NGO"){
+			document.getElementById("keysearch").style.display = "none";
+			document.getElementById("locationsearch").style.display = "none";
+			
+			$('#orgtable tbody').empty();
+			$('#orgtable tbody').append('<tr class="header"><th style="width:60%;">No positive Flags</th></tr>')
+		}
+		else{
+			//var s = responseData.replace(/'/g, '"');
+			//console.log(s);
+			//var obj=JSON.parse(s);
+			var obj=responseData;
+			console.log("asdyutasdyuasdyuasdgyu");
+			console.log(obj[0]);
+			document.getElementById("keysearch").style.display = "none";
+			document.getElementById("locationsearch").style.display = "none";
+			var i=0;
+			$('#orgtable tbody').empty();
+			$('#orgtable tbody').append('<tr class="header"><th style="width:60%;">Project Name</th><th style="width:60%;">Date</th><th style="width:60%;">orgEmail</th><th style="width:60%;">Phone</th>');
+			for(i=0;i<obj.length;i++){
+					$('#orgtable tbody').append('<tr><td>'+obj[i].projectName+'</td><td>'+obj[i].date+'</td><td>'+obj[i].email+'</td><td>'+obj[i].phone+'</td></tr>');
+			}
+		}
+		
+    },
+    error: function (responseData, textStatus, errorThrown) {
+        alert('GET failed.');
+    }
+});
+}
+
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  //tre={"dsaghfasdgh","asdfguasdgasgdjh","asyf"};
+  //console.log(tr);
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    //console.log(td);
+	if (td) {
+      txtValue = td.textContent || td.innerText;
+      console.log(txtValue);
+	  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+
+
+function myFunction1() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput1");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable1");
+  tr = table.getElementsByTagName("tr");
+  //tre={"dsaghfasdgh","asdfguasdgasgdjh","asyf"};
+  //console.log(tr);
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    //console.log(td);
+	if (td) {
+      txtValue = td.textContent || td.innerText;
+      console.log(txtValue);
+	  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+</script>
+
+</body>
+</html>
